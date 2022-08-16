@@ -134,14 +134,15 @@ contract MemoryTypesPracticeInput is IMemoryTypesPractice, Ownable {
     // Should consume not more than 36100 as execution cost for 6 elements array
     function getMiddleDickSize() external view returns (uint256) {
         uint256 _sum;
+        uint256 _length = men.length;
 
         unchecked {
-            for (uint256 i = 0; i < men.length; i++) {
+            for (uint256 i = 0; i < _length; i++) {
                 _sum += men[i].dickSize;
             }
         }
 
-        return _sum / men.length;
+        return _sum / _length;
     }
 
     // to optimize 6
@@ -149,9 +150,10 @@ contract MemoryTypesPracticeInput is IMemoryTypesPractice, Ownable {
     // Should consume not more than 40000 as execution cost for 6 elements array
     function numberOfOldMenWithHighIq() external view returns (uint256) {
         uint256 _count;
+        uint256 _length = men.length;
 
         unchecked {
-            for (uint256 i = 0; i < men.length; i++) {
+            for (uint256 i = 0; i < _length; i++) {
                 Man storage man = men[i];
                 if (man.edge > 50 && man.iq > 120) _count++;
             }
